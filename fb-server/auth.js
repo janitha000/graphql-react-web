@@ -1,4 +1,5 @@
 const jwt = require('jsonwebtoken')
+const { AuthenticationError } = require('apollo-server')
 
 const JWT_SECRET = "janitha000"
 
@@ -7,6 +8,15 @@ const getSignedKey = ({ id, username, email }) => {
     return token;
 }
 
+const validateAuthenticatoin = (user) => {
+    if (!user) {
+        throw new AuthenticationError("User is not authenticated")
+    }
+    return user;
+}
+
+
 module.exports = {
-    getSignedKey
+    getSignedKey,
+    validateAuthenticatoin
 }
