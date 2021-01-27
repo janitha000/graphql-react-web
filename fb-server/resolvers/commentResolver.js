@@ -6,9 +6,7 @@ const postDAO = new PostDAO()
 const resolvers = {
     Mutation: {
         async createComment(_, { postId, body }, { user }) {
-            console.log(user)
             const { username } = validateAuthenticatoin(user);
-            console.log(username)
 
             if (body.trim() === '') {
                 throw new UserInputError("Body cannot be empty", {

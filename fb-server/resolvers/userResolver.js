@@ -40,13 +40,11 @@ const resolvers = {
             }
 
             const user = await userDAO.getUserByUserName(loginInput.username);
-            console.log(user)
             if (!user) {
                 throw new UserInputError("User not found", {
                     errors: "User not found"
                 })
             }
-            console.log(loginInput.password, user.password)
             const match = await bcrypt.compare(loginInput.password, user.password)
             if (!match) {
                 throw new UserInputError("Wrong password", {

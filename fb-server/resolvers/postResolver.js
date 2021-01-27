@@ -18,9 +18,12 @@ const resolvers = {
         }
     },
     Mutation: {
-        async createPost(_, { body }, { user }) {
+        async createPost(_, { body }, { user, pubsub }) {
             validateAuthenticatoin(user);
             const post = await postDAO.createPost(body, user);
+            pubsub.publish('NEW_POST', {
+                newPost: post
+            })
             return post;
         },
 
@@ -34,8 +37,18 @@ const resolvers = {
             else {
                 throw new Error("You are not authorized to delete the post")
             }
+        },
 
+        async likePost(_, postId, { user }) {
+            const { username } = validateAuthenticatoin(user)
 
+            const post = await postDAO.likePost(postId, username)
+            return post;
+        }
+    },
+    Subscription: {
+        newPost: {
+            subscribe: (_, __, { pubsub }) => pubsub.asyncIterator('NEW_POST')
         }
     }
 }

@@ -8,6 +8,8 @@ const typeDefs = gql`
         createdAt: String
         comments: [Comment]
         likes: [Like]
+        commentsCount: Int!
+        likesCount: Int!
     }
 
     type Comment{
@@ -61,6 +63,10 @@ const typeDefs = gql`
     type RegisterResponse{
         user: User
         token: String
+    }
+
+    type Subscription{
+        newPost: Post!
     }
 
 `

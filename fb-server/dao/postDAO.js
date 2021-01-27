@@ -67,6 +67,27 @@ module.exports = class PostDAO {
         }
     }
 
+    likePost = async (postId, username) => {
+        const post = await this.getPostById(postId)
+        if (post) {
+            if (post.likes.find(like => like.like.username === username)) {
+                post.likes = post.likes.filter(like => like.username !== username)
+            }
+            else {
+                post.like.push({
+                    username,
+                    createAt: new Date().toISOString()
+                })
+            }
+
+            await post.save()
+            return post;
+
+        } else {
+            throw new UserInputError("No post found")
+        }
+    }
+
 
 }
 
