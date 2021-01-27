@@ -1,0 +1,73 @@
+:root {
+    --bg-clr: black;
+    --menu-clr: rgb(255, 255, 255);
+    --btn-clr:  rgb(62, 83, 199);
+    --active-clr:  rgb(214, 0, 11);
+  }
+
+.navbar{
+    background-color: var(--bg-clr);
+    position: sticky;
+    height: 3rem;
+    padding: 0.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+
+.navbar__right{
+    display: flex;
+    align-items: center;
+}
+
+.navbar__menuitem{
+    margin-left: 2rem;
+    cursor: pointer;
+    font-size: 1.5rem;
+    color: black;
+    align-items: center;
+    
+}
+
+.navbar__auth{
+    display: flex;
+    align-items: center;
+}
+
+.navbar__menuitem > a:hover{
+  border-bottom: 4px solid var(--btn-clr);
+}
+
+.navbar__menuitem > a {
+    text-decoration: none;
+    color: var(--menu-clr)
+}
+
+.navbar__button > a {
+    text-decoration: none;
+    color:var(--btn-clr);
+}
+
+.navbar__button{
+    border: 3px var(--btn-clr) solid;
+    border-radius: 10px;
+    font-size: 1.5rem;
+    background: var(--bg-clr);
+    margin-left: 0.15rem;
+    background: transparent;
+    background-color: 
+}
+
+.navbar__button:hover{
+    background:  var(--btn-clr);  
+}
+
+.navbar__button:hover > a{
+    color: white;
+} 
+
+.active{
+    border-bottom: 3px var(--active-clr) solid;
+}
+

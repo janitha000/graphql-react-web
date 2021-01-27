@@ -30,7 +30,7 @@ const server = new ApolloServer({
 })
 
 server.applyMiddleware({ app })
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 5000;
 
 mongoose.connect(MONGO, { useNewUrlParser: true, useUnifiedTopology: true }).then(() => {
     app.listen(PORT, () => {
