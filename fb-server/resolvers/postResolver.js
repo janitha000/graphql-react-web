@@ -19,10 +19,22 @@ const resolvers = {
     },
     Mutation: {
         async createPost(_, { body }, { user }) {
-            console.log(user)
             validateAuthenticatoin(user);
             const post = await postDAO.createPost(body, user);
             return post;
+        },
+
+        async deletePost(_, { postID }, { user }) {
+            validateAuthenticatoin(user);
+            const post = await postDAO.getPostById(postDAO)
+            if (post.username === user.username) {
+                const res = await postDAO.deletePost(postID);
+                return res;
+            }
+            else {
+                throw new Error("You are not authorized to delete the post")
+            }
+
 
         }
     }
