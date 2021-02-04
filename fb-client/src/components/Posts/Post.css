@@ -34,6 +34,7 @@
 
 .post__name{
     font-size: 1.2rem;
+    font-weight: 900;
 }
 
 .post__time{
@@ -52,4 +53,80 @@
 .post__content{
     padding-top: 0.7rem;
     padding-bottom: 0.7rem;
+}
+
+.post__interactions{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: .5rem;
+    padding-bottom: 0.7rem;
+}
+
+.post__likes {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 0.3rem;
+    cursor: pointer;
+}
+
+.post__comments{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 0.3rem;
+}
+
+.post__comments:hover{
+    cursor: pointer;
+}
+
+.post__comment__top{
+    display: flex;
+    align-items: center;
+    gap: .5rem; 
+}
+
+.comment__item{
+    padding-top: .5rem;
+}
+
+.posts__comments > p:hover{
+    cursor: pointer;
+}
+
+
+.comment__image{
+    width: 2.5rem;
+    height: 2.5rem;
+    background-color: white;
+    border-radius: 100%;
+    padding: 0.3rem;
+}
+
+.comment__image > img{
+    width: 100%;
+    height: 100%;
+}
+
+.comment__name{
+    font-size: 0.9rem;
+    font-weight: 700;
+}
+
+.comment__time{
+    font-size: 0.6rem;
+    color: rgb(151, 151, 151);
+}
+
+
+.comment__content{
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    font-size: 0.8rem;
+}
+
+.comment__items{
+    padding-left: 2rem;
 }
