@@ -4,6 +4,8 @@ import { createHttpLink } from 'apollo-link-http';
 import { ApolloProvider } from '@apollo/client';
 import { BrowserRouter as Router, Route } from 'react-router-dom'
 import { ApolloProvider as ApolloHooksProvider } from '@apollo/react-hooks'
+import { AuthProvider } from './contexts/auth'
+import AuthRoute from './util/AuthRoute'
 
 
 import Home from './components/pages/Home'
@@ -23,24 +25,24 @@ const client = new ApolloClient({
 
 function App() {
   return (
-    <ApolloProvider client={client}>
-      <ApolloHooksProvider client={client}>
-        <Router>
-          <NavBar />
-          <div className="container">
-            <div className="left"></div>
-            <div className="middle">
-              <Route exact path="/" component={Home} />
-              <Route exact path="/login" component={Login} />
-              <Route exact path="/register" component={Register} /></div>
-            <div className="right"></div>
-          </div>
+    <AuthProvider >
+      <ApolloProvider client={client}>
+        <ApolloHooksProvider client={client}>
+          <Router>
+            <NavBar />
+            <div className="container">
+              <div className="left"></div>
+              <div className="middle">
+                <Route exact path="/" component={Home} />
+                <AuthRoute exact path="/login" component={Login} />
+                <AuthRoute exact path="/register" component={Register} /></div>
+              <div className="right"></div>
+            </div>
+          </Router>
+        </ApolloHooksProvider>
+      </ApolloProvider>
+    </AuthProvider>
 
-
-
-        </Router>
-      </ApolloHooksProvider>
-    </ApolloProvider>
   );
 }
 

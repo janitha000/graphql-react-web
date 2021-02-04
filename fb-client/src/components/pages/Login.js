@@ -1,18 +1,17 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import gql from 'graphql-tag'
 import { useMutation } from '@apollo/react-hooks'
-import { Link } from 'react-router-dom';
 import Loader from "react-loader-spinner";
+import { AuthContext } from '../../contexts/auth'
 
 import './Register.css'
 import { useForm } from '../../hooks/useForm';
 
 const Login = ({ history }) => {
-
-    const [result, setResult] = useState({})
+    const { login } = useContext(AuthContext)
     const [errors, setErrors] = useState('')
 
-    const { onChange, onSubmit, clearForm, values } = useForm(login, {
+    const { onChange, onSubmit, clearForm, values } = useForm(loginUserCallback, {
         username: '',
         password: ''
     })
@@ -20,8 +19,8 @@ const Login = ({ history }) => {
     const [loginUser, { loading }] = useMutation(LOGIN_USER, {
         update(_, result) {
             console.log(result)
-            let { data: { login } } = result
-            setResult(login)
+            let { data: { login: userData } } = result
+            login(userData)
             history.push('/')
         },
         onError(err) {
@@ -31,7 +30,7 @@ const Login = ({ history }) => {
         variables: values
     })
 
-    function login() {
+    function loginUserCallback() {
         loginUser()
         clearForm();
     }
