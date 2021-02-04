@@ -3,6 +3,8 @@ import { ApolloClient, InMemoryCache } from '@apollo/client';
 import { createHttpLink } from 'apollo-link-http';
 import { ApolloProvider } from '@apollo/client';
 import { BrowserRouter as Router, Route } from 'react-router-dom'
+import { ApolloProvider as ApolloHooksProvider } from '@apollo/react-hooks'
+
 
 import Home from './components/pages/Home'
 import Login from './components/pages/Login'
@@ -22,13 +24,22 @@ const client = new ApolloClient({
 function App() {
   return (
     <ApolloProvider client={client}>
-      <Router>
-        <NavBar />
-        <Route exact path="/" component={Home} />
-        <Route exact path="/login" component={Login} />
-        <Route exact path="/register" component={Register} />
-      </Router>
+      <ApolloHooksProvider client={client}>
+        <Router>
+          <NavBar />
+          <div className="container">
+            <div className="left"></div>
+            <div className="middle">
+              <Route exact path="/" component={Home} />
+              <Route exact path="/login" component={Login} />
+              <Route exact path="/register" component={Register} /></div>
+            <div className="right"></div>
+          </div>
 
+
+
+        </Router>
+      </ApolloHooksProvider>
     </ApolloProvider>
   );
 }

@@ -19,6 +19,7 @@
 .navbar__right{
     display: flex;
     align-items: center;
+    
 }
 
 .navbar__menuitem{
@@ -36,12 +37,12 @@
 }
 
 .navbar__menuitem > a:hover{
-  border-bottom: 4px solid var(--btn-clr);
+  border-bottom: 3px solid var(--btn-clr);
 }
 
 .navbar__menuitem > a {
     text-decoration: none;
-    color: var(--menu-clr)
+    color: var(--menu-clr);
 }
 
 .navbar__button > a {
@@ -56,7 +57,7 @@
     background: var(--bg-clr);
     margin-left: 0.15rem;
     background: transparent;
-    background-color: 
+    transition: all 300ms ease;
 }
 
 .navbar__button:hover{
