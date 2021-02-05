@@ -18,7 +18,7 @@ const Home = () => {
     return (
         <>
             {user && <PostForm user={user} />}
-            <div style={{ display: 'flex', justifyContent: 'center', flexDirection: 'column' }}>
+            <div style={{ display: 'flex', justifyContent: 'center', flexDirection: 'column', transition: "all 200ms ease" }}>
                 {loading ? ((<Loader type="Bars" color="black" height={50} width={50} />))
                     : (data && data.getPosts.map(post => (
                         <Post key={post.id} post={post} />)))

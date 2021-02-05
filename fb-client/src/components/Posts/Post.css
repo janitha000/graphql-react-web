@@ -41,11 +41,18 @@
 
 .post__time{
     font-size: 0.8rem;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 0.3rem;
 }
+
+
 
 .post__time:hover{
     cursor: pointer;
 }
+
 
 .post__time > a{
     text-decoration: none;

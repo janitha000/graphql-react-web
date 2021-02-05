@@ -12,6 +12,7 @@ module.exports = class PostDAO {
     }
 
     getPostById = async (postId) => {
+        console.log(postId)
         const post = await Post.findById(postId)
         return post;
     }

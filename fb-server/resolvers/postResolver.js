@@ -29,7 +29,7 @@ const resolvers = {
 
         async deletePost(_, { postID }, { user }) {
             validateAuthenticatoin(user);
-            const post = await postDAO.getPostById(postDAO)
+            const post = await postDAO.getPostById(postID)
             if (post.username === user.username) {
                 const res = await postDAO.deletePost(postID);
                 return res;

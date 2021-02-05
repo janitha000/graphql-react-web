@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import './Post.css'
 import moment from 'moment'
 import { Link } from 'react-router-dom';
@@ -7,13 +7,14 @@ import { FaRegHeart } from 'react-icons/fa';
 import { FaHeart } from 'react-icons/fa';
 import { BiCommentDetail } from 'react-icons/bi'
 import { IconContext } from "react-icons";
+import { MdDelete } from "react-icons/md";
+import { AuthContext } from '../../contexts/auth';
 
 
 const Post = ({ post }) => {
     const { username, body, createdAt, comments, likes, commentsCount, likesCount, id, image } = post;
     const [showComments, setShowComments] = useState(false)
-
-    console.log(showComments)
+    const { user } = useContext(AuthContext)
 
     return (
 
@@ -24,7 +25,15 @@ const Post = ({ post }) => {
                 </div>
                 <div className="post__author">
                     <div className="post__name">{username}</div>
-                    <div className="post__time"> <Link to={`/posts/${id}`}>{moment(createdAt).fromNow()}</Link></div>
+                    <div className="post__time">
+                        <Link to={`/posts/${id}`}>{moment(createdAt).fromNow()}
+                        </Link>
+                        {user && username === user.user.username && <IconContext.Provider value={{ color: 'grey', size: 20 }}>
+                            <div className=""><MdDelete /></div>
+                        </IconContext.Provider>}
+
+
+                    </div>
 
                 </div>
             </div>
@@ -69,8 +78,6 @@ const Comment = ({ comment: { id, body, username, createdAt, image } }) => {
                 {body}
             </div>
         </div>
-
-
     )
 }
 
