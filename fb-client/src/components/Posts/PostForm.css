@@ -1,0 +1,38 @@
+.home__form{
+    display: flex;
+    align-items: center;
+    margin-bottom: 1rem;
+    flex-wrap: nowrap;
+    background-color:  rgb(240,240,240);
+    padding: 0.4rem;
+    flex-grow: 1;
+    height: 4rem;
+    border-radius: 0.3rem;
+}
+
+.home__input{
+    border: none;
+    border-radius: 10px;
+    height: 100%;
+    flex: 1;
+    outline: none;
+    font-size: 1.2rem;
+    text-indent: 10px;
+}
+
+.home__input__button{
+    margin-left: 0.5rem;
+    height: 100%;
+    border: black 3px solid;
+    width: 5rem;
+    border-radius: 10%;
+    font-size: 1.2rem;
+    font-weight: 1000;
+    cursor: pointer;
+    transition: all 200ms ease;
+    outline: none;
+}
+
+.home__input__button:hover{
+    transform: scale(1.1);
+}

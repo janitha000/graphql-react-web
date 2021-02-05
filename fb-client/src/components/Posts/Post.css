@@ -6,6 +6,8 @@
     transition: all 200ms ease-in;
     display: flex;
     flex-direction: column;
+    flex-grow: 1;
+    margin-bottom: 2rem;
 }
 
 .post:hover{

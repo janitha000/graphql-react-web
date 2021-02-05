@@ -5,7 +5,9 @@ import { ApolloProvider } from '@apollo/client';
 import { BrowserRouter as Router, Route } from 'react-router-dom'
 import { ApolloProvider as ApolloHooksProvider } from '@apollo/react-hooks'
 import { AuthProvider } from './contexts/auth'
+import { setContext } from 'apollo-link-context'
 import AuthRoute from './util/AuthRoute'
+
 
 
 import Home from './components/pages/Home'
@@ -17,11 +19,24 @@ const httpLink = createHttpLink({
   uri: 'http://localhost:5000/graphql'
 });
 
+const authLink = setContext(() => {
+  const token = localStorage.getItem('jwt-token')
+  return {
+    headers: {
+      Authorization: token ? `Bearer ${token}` : ''
+    }
+  }
+})
 
 const client = new ApolloClient({
-  link: httpLink,
-  cache: new InMemoryCache()
+  link: authLink.concat(httpLink),
+  //link: httpLink,
+  cache: new InMemoryCache(),
+
 });
+
+
+
 
 function App() {
   return (

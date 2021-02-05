@@ -1,6 +1,7 @@
 const express = require('express')
 const { ApolloServer, PubSub } = require('apollo-server-express')
 const jwt = require('express-jwt')
+const cors = require('cors')
 
 const typeDefs = require('./schema')
 const resolvers = require('./resolvers')
@@ -14,6 +15,7 @@ const app = express();
 const JWT_SECRET = "janitha000"
 const auth = jwt({ secret: JWT_SECRET, credentialsRequired: false, algorithms: ['sha1', 'RS256', 'HS256'] })
 app.use(auth)
+app.use(cors({ credentials: true, origin: "http://localhost:3000" }));
 
 
 const server = new ApolloServer({
