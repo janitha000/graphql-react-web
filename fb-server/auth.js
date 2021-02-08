@@ -4,7 +4,7 @@ const { AuthenticationError } = require('apollo-server')
 const JWT_SECRET = "janitha000"
 
 const getSignedKey = ({ id, username, email }) => {
-    const token = jwt.sign({ id, email, username }, JWT_SECRET, { expiresIn: '1h' })
+    const token = jwt.sign({ id, email, username }, JWT_SECRET, { expiresIn: '1d' })
     return token;
 }
 

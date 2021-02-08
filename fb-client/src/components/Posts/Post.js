@@ -10,6 +10,9 @@ import { IconContext } from "react-icons";
 import { MdDelete } from "react-icons/md";
 import { AuthContext } from '../../contexts/auth';
 
+import LikeButton from './LikeButton'
+
+
 
 const Post = ({ post }) => {
     const { username, body, createdAt, comments, likes, commentsCount, likesCount, id, image } = post;
@@ -39,11 +42,7 @@ const Post = ({ post }) => {
             </div>
             <div className="post__content">{body}</div>
             <div className="post__interactions">
-                <IconContext.Provider value={{ color: 'red' }}>
-                    <div className="post__likes">
-                        <FaRegHeart />{likesCount}
-                    </div>
-                </IconContext.Provider>
+                <LikeButton post={{ likes, likesCount, id }} user={user} />
                 <IconContext.Provider value={{ color: 'blue' }}>
                     <div className="post__comments">
                         <BiCommentDetail onClick={() => setShowComments((preV) => !preV)} /> {commentsCount}
@@ -80,5 +79,7 @@ const Comment = ({ comment: { id, body, username, createdAt, image } }) => {
         </div>
     )
 }
+
+
 
 export default Post

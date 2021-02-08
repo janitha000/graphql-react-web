@@ -12,7 +12,6 @@ module.exports = class PostDAO {
     }
 
     getPostById = async (postId) => {
-        console.log(postId)
         const post = await Post.findById(postId)
         return post;
     }
@@ -68,19 +67,20 @@ module.exports = class PostDAO {
         }
     }
 
-    likePost = async (postId, username) => {
+    likePost = async ({ postId }, username) => {
         const post = await this.getPostById(postId)
         if (post) {
-            if (post.likes.find(like => like.like.username === username)) {
+            console.log(post)
+            if (post.likes.find(like => like.username === username)) {
                 post.likes = post.likes.filter(like => like.username !== username)
             }
             else {
-                post.like.push({
+                post.likes.push({
                     username,
                     createAt: new Date().toISOString()
                 })
             }
-
+            console.log(post)
             await post.save()
             return post;
 
