@@ -19,6 +19,8 @@ const Post = ({ post }) => {
     const [showComments, setShowComments] = useState(false)
     const { user } = useContext(AuthContext)
 
+    console.log(post)
+
     return (
 
         <div className="post">

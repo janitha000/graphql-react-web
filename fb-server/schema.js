@@ -1,6 +1,8 @@
 const { gql } = require('apollo-server-express')
 
 const typeDefs = gql`
+    scalar Date
+
     type Post{
         id: ID!
         body: String!
@@ -10,6 +12,14 @@ const typeDefs = gql`
         likes: [Like]
         commentsCount: Int!
         likesCount: Int!
+    }
+
+    type ToDo {
+        id: ID!,
+        title: String!,
+        content: String!,
+        user: String!
+        createdAt: Date!
     }
 
     type Comment{
@@ -48,6 +58,7 @@ const typeDefs = gql`
         helloWorld: String!
         getPosts: [Post]
         getPost(postId:ID!): Post
+        getToDos:[ToDo]
     }
 
     type Mutation{
@@ -58,6 +69,8 @@ const typeDefs = gql`
         createComment(postId:String!, body:String!):Post!
         deleteComment(postId:String!, commentId:String!):Post!
         likePost(postId:String!):Post!
+        createToDo(title:String!, content:String!): ToDo!
+        
     }
 
     type RegisterResponse{
